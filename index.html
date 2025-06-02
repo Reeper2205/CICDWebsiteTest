@@ -1,0 +1,110 @@
+I'll help you generate some simple website code that would be perfect for testing a CI/CD pipeline. Here's a basic HTML/CSS/JavaScript website structure:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CI/CD Pipeline Test Site</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        header {
+            background-color: #4CAF50;
+            padding: 20px;
+            color: white;
+            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .container {
+            padding: 20px;
+            background-color: #f4f4f4;
+            border-radius: 5px;
+        }
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 0.8em;
+            color: #777;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #counter {
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CI/CD Pipeline Test Website</h1>
+        <p>A simple website to test your deployment pipeline</p>
+    </header>
+
+    <div class="container">
+        <h2>Welcome to your test site!</h2>
+        <p>This is a simple website that you can use to test your CI/CD pipeline. Make changes to this code and push them to your repository to see your pipeline in action.</p>
+        
+        <h3>Current Build Information:</h3>
+        <p>Build Version: <span id="version">1.0.0</span></p>
+        <p>Last Deployed: <span id="date">June 2, 2025</span></p>
+        
+        <h3>Interactive Element:</h3>
+        <p>Click counter: <span id="counter">0</span></p>
+        <button id="increment">Click Me!</button>
+    </div>
+
+    <footer>
+        <p>© 2025 CI/CD Test Site | <a href="https://github.com/yourusername/your-repo">View on GitHub</a></p>
+    </footer>
+
+    <script>
+        // Simple counter functionality
+        let count = 0;
+        const counterElement = document.getElementById('counter');
+        const button = document.getElementById('increment');
+        
+        button.addEventListener('click', () => {
+            count++;
+            counterElement.textContent = count;
+        });
+        
+        // You could update these dynamically in your CI/CD pipeline
+        document.getElementById('date').textContent = new Date().toLocaleDateString();
+    </script>
+</body>
+</html>
+```
+
+This code includes:
+
+1. A basic HTML structure with header, content area, and footer
+2. Simple CSS styling to make the page look presentable
+3. JavaScript functionality (a counter) to verify that interactive elements work
+4. Placeholders for version and deployment date that could be updated by your CI/CD pipeline
+
+To use this for CI/CD testing:
+
+1. Save this code as `index.html` in your repository
+2. Set up your CI/CD pipeline to deploy this file to your hosting environment
+3. For more advanced testing, you could modify the pipeline to automatically update the version number or deployment date
+
+You could easily extend this with additional files like separate CSS and JavaScript files, or add more complex functionality as needed for your testing purposes.
