@@ -1,4 +1,4 @@
-name: Deploy to EC2
+name: Deploy Website to EC2
 
 on:
   push:
@@ -15,7 +15,7 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: eu-west-1 
+        aws-region: your-aws-region
         
     - name: Deploy to EC2 via Session Manager
       run: |
@@ -23,8 +23,17 @@ jobs:
           --document-name "AWS-RunShellScript" \
           --targets "Key=InstanceIds,Values=${{ secrets.INSTANCE_ID }}" \
           --parameters "commands=[
-            'cd /var/www/html',
-            'sudo rm -rf *',
-            'sudo git clone https://github.com/Reeper2205/CICDWebsiteTest.git .',
-            'sudo systemctl restart httpd'
-          ]"
+            'echo \"===== Starting deployment at $(date) =====\"',
+            'sudo rm -rf /var/www/html/*',
+            'cd /tmp',
+            'rm -rf website-deploy',
+            'git clone https://oauth2:${{ secrets.GH_TOKEN }}@github.com/yourusername/your-repo.git website-deploy',
+            'sudo cp -rv website-deploy/* /var/www/html/',
+            'sudo chown -R apache:apache /var/www/html/',
+            'sudo chmod -R 755 /var/www/html/',
+            'echo \"===== Web root contents after copy =====\"',
+            'ls -la /var/www/html/',
+            'sudo systemctl restart httpd',
+            'echo \"===== Deployment completed at $(date) =====\"'
+          ]" \
+          --output text
